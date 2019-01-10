@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.rain.mapper.RainMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.rain.domain.Rain">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="rainfull" jdbcType="INTEGER" property="rainfull" />
+    <result column="point" jdbcType="VARCHAR" property="point" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, region, createtime, rainfull, point, address
+  </sql>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from rain
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rain
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.rain.domain.Rain">
+    insert into rain (region, createtime,
+      rainfull, point, address
+      )
+    values (#{region,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+      #{rainfull,jdbcType=INTEGER}, #{point,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+
+</mapper>
